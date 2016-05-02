@@ -10,12 +10,12 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class gui extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTextField textField_1;
 	private String str="";
 	private JTextArea textArea;
 
@@ -51,6 +51,8 @@ public class gui extends JFrame {
 		contentPane.add(lblClock);
 		
 		textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.RIGHT);
+		textField.setText("07:00");
 		textField.setBounds(66, 7, 96, 21);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -68,14 +70,9 @@ public class gui extends JFrame {
 		lblSay.setBounds(10, 41, 46, 15);
 		contentPane.add(lblSay);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(66, 38, 96, 21);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		JButton btnSay = new JButton("Hello,Robot!");
 		
-		JButton btnSay = new JButton("Say");
-		
-		btnSay.setBounds(172, 37, 87, 23);
+		btnSay.setBounds(66, 37, 193, 23);
 		contentPane.add(btnSay);
 		
 		textArea = new JTextArea();
@@ -91,8 +88,6 @@ public class gui extends JFrame {
 				int testM=Integer.valueOf(parse[1]);
 				
 				try{
-					
-					System.out.print(testH+ " "+testM);
 					if( testH<0 | testH>=24 | testM<0 | testM>=60 )
 					{
 						textField.setText("請輸入正確時間");

@@ -19,19 +19,61 @@ public class JPLUtl {
 	
 	public static String run(int input)
 	{
+		String tmp="";
 		String t=range(input);
-		
+		if(t=="0")
+		{
+     		tmp+="機器人休息中...\n";
+		}
 		String t2 = "now("+t+",L).";
 	    Query q2 = new Query(t2);
 	    
-	    String tmp="";
+	    
+	    Map<String, Term> s4;
 	    
 	     while ( q2.hasMoreSolutions() ){
-	    	Map<String, Term> s4= q2.nextSolution();
-	    	Set <String> s = s4.keySet();
+	    	s4= q2.nextSolution();
 	    	
-	        tmp+= "L = " + s4.get("L") +" ";
+	        tmp+= "L = " + s4.get("L") +" \n";
+	        switch(t)
+		     {
+		     	case "1":
+		     		tmp+="主人現在是早餐時間，您需要";
+		     		break;
+		     	case "2":
+		     		tmp+="主人早上好，您需要";
+		     		break;
+		     	case "3":
+		     		tmp+="主人現在是午餐時間，您需要";
+		     		break;
+		     	case "4":
+		     		tmp+="主人下午好，您需要";
+		     		break;
+		     	case "5":
+		     		tmp+="主人現在是晚餐時間，您需要";
+		     		break;
+		     	case "6":
+		     		tmp+="晚安主人，您需要";
+		     		break; 
+		     }
+		     switch(s4.get("L")+"")
+		     {
+		     	case "chinesefood":
+		     		tmp+="吃中式餐點嗎?\n";
+		     		break;
+		     	case "coffee":
+		     		tmp+="喝杯咖啡嗎?\n";
+		     		break;
+		     	case "western":
+		     		tmp+="吃西式餐點嗎?\n";
+		     		break;
+		     	case "watchtv":
+		     		tmp+="看電視嗎?\n";
+		     		break;
+		    	 
+		     }
 	     }
+	     
 	     return tmp;
 	}
 	public static String time()
@@ -44,7 +86,7 @@ public class JPLUtl {
 	}
 	public static String range(int timeH)
 	{
-		if(timeH>0 && timeH<5)
+		if(timeH>=0 && timeH<5)
 			return "0";
 		else if(timeH>=5 && timeH<8)
 			return "1";
