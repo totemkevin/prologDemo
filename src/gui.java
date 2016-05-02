@@ -11,6 +11,7 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.JScrollPane;
 
 public class gui extends JFrame {
 
@@ -70,16 +71,39 @@ public class gui extends JFrame {
 		lblSay.setBounds(10, 41, 46, 15);
 		contentPane.add(lblSay);
 		
-		JButton btnSay = new JButton("Hello,Robot!");
+		JButton btnSay = new JButton("Hello!");
 		
-		btnSay.setBounds(66, 37, 193, 23);
+		btnSay.setBounds(66, 37, 96, 23);
 		contentPane.add(btnSay);
 		
-		textArea = new JTextArea();
-		textArea.setBounds(10, 69, 249, 235);
-		contentPane.add(textArea);
-		
 		str+=JPLUtl.link()+"\n";
+		
+		JButton btnNewButton = new JButton("Y");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				str+=JPLUtl.yes();
+				textArea.setText(str);
+			}
+		});
+		btnNewButton.setBounds(172, 39, 41, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("N");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				str+="不要就算了，了不起歐~";
+				textArea.setText(str);
+			}
+		});
+		btnNewButton_1.setBounds(216, 39, 46, 23);
+		contentPane.add(btnNewButton_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 69, 249, 235);
+		contentPane.add(scrollPane);
+		
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
 		textArea.setText(str);
 		btnSay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class JPLUtl {
+	static String get="";
 	public static String link()
 	{
 		String t1 = "consult('hw1.pl')";
@@ -23,7 +24,7 @@ public class JPLUtl {
 		String t=range(input);
 		if(t=="0")
 		{
-     		tmp+="機器人休息中...\n";
+     		tmp+="這麼晚,我是不用睡逆...\n";
 		}
 		String t2 = "now("+t+",L).";
 	    Query q2 = new Query(t2);
@@ -33,8 +34,8 @@ public class JPLUtl {
 	    
 	     while ( q2.hasMoreSolutions() ){
 	    	s4= q2.nextSolution();
-	    	
-	        tmp+= "L = " + s4.get("L") +" \n";
+	    	get= s4.get("L")+"";
+	        tmp+= "L = " + get +" \n";
 	        switch(t)
 		     {
 		     	case "1":
@@ -61,6 +62,12 @@ public class JPLUtl {
 		     	case "chinesefood":
 		     		tmp+="吃中式餐點嗎?\n";
 		     		break;
+		     	case "japanese":
+		     		tmp+="吃日式餐點嗎?\n";
+		     		break;
+		     	case "tea":
+		     		tmp+="喝杯茶嗎?\n";
+		     		break;
 		     	case "coffee":
 		     		tmp+="喝杯咖啡嗎?\n";
 		     		break;
@@ -75,6 +82,20 @@ public class JPLUtl {
 	     }
 	     
 	     return tmp;
+	}
+	public static String yes()
+	{
+		String txt="";
+		 Map<String, Term> s4;
+		//System.out.print(get);
+		String t2 = "menu("+get+",F).";
+	    Query q2 = new Query(t2);
+	    while ( q2.hasMoreSolutions() ){
+	    	s4= q2.nextSolution();
+	    	get= s4.get("F")+"";
+	        txt+= "F = " + get +" \n";
+	    }
+	    return txt;
 	}
 	public static String time()
 	{
